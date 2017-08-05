@@ -71,7 +71,7 @@ export default class ItemView extends React.Component {
         var temp = this.props.cartItemIds;
         newCartItemIds = temp.slice();
         newCartItemIds.push(itemIndex);
-
+        
         return (
             <View style={styles.info}>
                 <Text style={styles.itemName}>{this.props.itemSelected}</Text>

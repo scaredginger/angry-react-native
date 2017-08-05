@@ -32,6 +32,7 @@ export default class CheckoutView extends React.Component {
         return (
             <View style={styles.mainItemView}>
                 {this.getCart()}
+                <Text style={styles.money}>Total: {this.getTotal()}</Text>
                 <Button style={styles.bottomButton} onPress={this.sendOrder()}>
                     <Text>Send Order</Text>
                 </Button>
@@ -76,6 +77,23 @@ export default class CheckoutView extends React.Component {
         );
     }
 
+    getTotal() {
+
+        const theMenu = this.props.menu;
+        const items = theMenu.vendor.menu.products;
+        const cartItemIds = this.props.cartItemIds;
+        let total = 0
+
+        for(let i = 0; i < cartItemIds.length; i++) {
+            total += items[cartItemIds[i]]["price"];
+
+        }
+
+        let priceString = "$"+Number(Math.floor(total/100)+total%100).toFixed(2);
+
+        return priceString;
+    }
+
     sendOrder() {
 
         var restaurant_id = this.props.resID;
@@ -102,5 +120,9 @@ const styles = StyleSheet.create({
     },
     mainItemView: {
         marginTop: 20
+    },
+    money: {
+        marginTop: 20,
+        fontSize: 18
     }
 });
