@@ -1,0 +1,101 @@
+{
+  "vendor": {
+    "id": "a_unique_identifier",
+    "name": "Our Sample Restuarant",
+    "location": "101 Angry Lane, Clayton VIC",
+
+    "menu": {
+      "products": [
+        {
+          "id": 0,
+          "name": "French Fries",
+          "desc": "Delicious french fries, served with ketchup."
+          "price": 400,
+          "variants": [],
+          "tags": [
+            "entrees",
+            "vegetarian",
+            "nut free",
+            "gluten-free"
+          ]
+        },
+
+        {
+          "id": 1,
+          "name": "Sandwich",
+          "desc": "A simple sandwich on wholemeal bread, with organic lettuce and cheddar cheese.",
+          "price": 800,
+          "variants": ["Chicken", "Steak"],
+          "tags": [
+            "lunch",
+            "nut free"
+          ]
+        },
+
+        {
+          "id": 2,
+          "name": "Chicken Burger",
+          "price": 1150,
+          "variants": [],
+          "tags": [
+            "lunch",
+            "specials"
+          ]
+        },
+
+        {
+          "id": 3,
+          "name": "Rice Paper Rolls",
+          "price": 150,
+          "variants": [],
+          "tags": [
+            "entrees",
+            "vegetarian",
+            "gluten-free"
+          ]
+        },
+
+        {
+          "id": 4,
+          "name": "Pasta Carbonara",
+          "price": 1500,
+          "variants": ["Rare", "Medium", "Well Done"],
+          "tags": [
+            "mains",
+            "specials"
+          ]
+        },
+
+        {
+          "id": 5,
+          "name": "Ice cream",
+          "price": 400,
+          "variants": ["Chocolate", "Vanilla", "Strawberry"],
+          "tags": [
+            "dessert",
+            "specials"
+          ]
+        }
+      ],
+
+      "structure": {
+        "entrees": {
+
+        },
+        "mains": {
+
+        },
+        "desserts": {
+
+        },
+        "specials": {
+
+        }
+      },
+
+      "style": {
+
+      }
+    }
+  }
+};

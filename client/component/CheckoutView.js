@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         marginLeft: 20,
         marginRight: 20,
-        marginTop: 20
+        marginTop: 20,
+        backgroundColor: "#49A7FD"
     },
     titleText: {
         fontSize: 24

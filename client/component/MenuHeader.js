@@ -12,20 +12,20 @@ export default class MenuHeader extends React.Component {
       var button = (<Left></Left>)
     } else{
       var button = (<Left>
-                      <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
-                        <Text style={styles.backButton}>Back</Text> 
+                      <Button style={styles.simpleButton} tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
+                        <Text>Back</Text> 
                       </Button>
                     </Left>)
     }
     return (
 
-                <Header backgroundColor="#49A7FD">
+                <Header style={styles.customHeader}>
                     {button}
                     <Body style={styles.hackyHack}>
                       <Title>Menu{this.props.category ? ' - ' + this.props.category : ''}</Title>
                     </Body>
                     <Right style={styles.hackyHack}>
-                    <Button transparent onPress={() => {this.props.onFilter({buttonPressed: 2})}}>
+                    <Button style={styles.simpleButton} transparent onPress={() => {this.props.onFilter({buttonPressed: 2})}}>
                         <Text>Filter</Text>
                     </Button>
                     </Right>
@@ -40,5 +40,15 @@ const styles = StyleSheet.create({
 	},
   backButton: {
     fontSize: 20
+  },
+  simpleButton: {
+    color: 'black',
+    backgroundColor: '#45A0FD',
+    borderRadius: 10,
+    borderColor: 'gray',
+    padding: 2
+  },
+  customHeader: {
+    backgroundColor: "#49A7FD"
   }
 });
