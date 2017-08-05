@@ -30,6 +30,7 @@ import SubMenu from './component/SubMenu';
 import FilterBar from './component/FilterBar';
 import ItemView from './component/ItemView';
 import CheckoutView from './component/CheckoutView';
+import Greeting from './component/Greeting';
 
 let menu = {
   "vendor": {
@@ -136,14 +137,14 @@ constructor() {
     this.state = {
       category: null,
       menuItems: [],
-      buttonPressed: 0,
+      buttonPressed: -1,
       filtered: false,
       filterTags: [],
       itemSelected: "",
       currentItemId: 0,
       itemsInCart: false,
       cartItemIds: [],
-      tableNumber: 0,
+      tableNumber: 7,
       resID: 5
     }
 }
@@ -156,6 +157,13 @@ constructor() {
     console.log(this.state);
 
     switch (this.state.buttonPressed) {
+      case -1:
+      view = (
+        <Container>
+          <Greeting menu={menu} tableNumber={this.state.tableNumber} beginDine={this.setState.bind(this)} />
+        </Container>
+      );
+      break;
       case 0:
       console.log("Case 0");
       view =  (

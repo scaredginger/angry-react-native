@@ -9,7 +9,7 @@
         {
           "id": 0,
           "name": "French Fries",
-          "desc": "Delicious french fries, served with ketchup."
+          "desc": "Delicious french fries, served with ketchup.",
           "price": 400,
           "variants": [],
           "tags": [
