@@ -1,6 +1,6 @@
 {
   "vendor": {
-    "id": "a_unique_identifier",
+    "id": "my-restuarant",
     "name": "Our Sample Restuarant",
     "location": "101 Angry Lane, Clayton VIC",
 
@@ -11,6 +11,7 @@
           "name": "Garlic Bread",
           "price": 400,
           "variants": [],
+          "images": "http://imgur.com/gallery/7d7ua",
           "tags": [
             "entrees",
             "vegetarian",
@@ -23,6 +24,7 @@
           "name": "Sandwhich",
           "price": 800,
           "variants": ["Chicken", "Steak"],
+          "images": "http://imgur.com/gallery/7d7ua",
           "tags": [
             "mains",
             "nut free"
@@ -34,6 +36,7 @@
           "name": "Cheesecake",
           "price": 600,
           "variants": [],
+          "images": "http://imgur.com/gallery/7d7ua",
           "tags": [
             "desserts",
             "specials"
@@ -43,6 +46,7 @@
         {
           "id": 3,
           "name": "Spring rolls",
+          "images": "http://imgur.com/gallery/7d7ua",
           "price": 300,
           "variants": [],
           "tags": [
@@ -56,6 +60,7 @@
           "name": "Steak and side",
           "price": 1500,
           "variants": ["Rare", "Medium", "Well Done"],
+          "images": "http://imgur.com/gallery/7d7ua",
           "tags": [
             "mains",
             "specials"
@@ -67,6 +72,7 @@
           "name": "Ice cream",
           "price": 400,
           "variants": ["Chocolate", "Vanilla", "Strawberry"],
+          "images": "http://imgur.com/gallery/7d7ua",
           "tags": [
             "dessert",
             "specials"
@@ -76,7 +82,9 @@
 
       "structure": {
         "entrees": {
+          "vegetarian": {
 
+          }
         },
         "main": {
 
