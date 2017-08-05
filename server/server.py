@@ -3,6 +3,7 @@ import os.path
 from http import server
 import json
 import orders
+from random import randint
 
 #HOST_NAME = 'example.net' # !!!REMEMBER TO CHANGE THIS!!!
 PORT_NUMBER = 8000
@@ -33,7 +34,7 @@ def respond_view (s, restaurant_id):
     if restaurant_id in orders.orders:
         s.send_response(200)
         s.send_header(bytes("Content-type", "utf-8"), bytes("application/json", "utf-8"))
-        s.send_header('Access-Control-Allow-Origin', 'http://localhost:9000')
+        s.send_header('Access-Control-Allow-Origin', '*')
         s.send_header(bytes('Access-Control-Allow-Methods', "utf-8"), bytes('GET, POST, OPTIONS, PUT, PATCH, DELETE', "utf-8"));
         s.send_header(bytes("Access-Control-Allow-Headers", "utf-8"), bytes("Origin, X-Requested-With, Content-Type, Accept", "utf-8"));
         s.end_headers()
@@ -45,9 +46,6 @@ def respond_view (s, restaurant_id):
         s.end_headers()
 
         s.wfile.write(bytes("Restaurant not found", "utf-8"))
-
-
-
 
 class MobileHandler(server.BaseHTTPRequestHandler):
     def do_HEAD(s):
@@ -70,8 +68,29 @@ class MobileHandler(server.BaseHTTPRequestHandler):
             restaurant_id = path[1]
 
             respond_view(s, restaurant_id)
+        elif path[0] == 'delete':
+            restaurant_id = path[1]
+            item_id = path[2]
+            s.handle_delete(restaurant_id, item_id)
         else:
             respond_unknown(s)
+
+    def handle_delete(s, rid, iid):
+        s.send_response(200)
+        s.send_header(bytes("Content-type", "utf-8"), bytes("text/html", "utf-8"))
+        s.send_header('Access-Control-Allow-Origin', '*')
+        s.send_header(bytes('Access-Control-Allow-Methods', "utf-8"), bytes('GET, POST, OPTIONS, PUT, PATCH, DELETE', "utf-8"));
+        s.send_header(bytes("Access-Control-Allow-Headers", "utf-8"), bytes("Origin, X-Requested-With, Content-Type, Accept", "utf-8"));
+        s.end_headers()
+        s.wfile.write(bytes("Fuck you", "utf-8"))
+        print(rid, iid)
+        for i in range(len(orders.orders[rid])):
+            item = orders.orders[rid][i]
+            print(item)
+            if item['id'] == int(iid):
+                print('match')
+                orders.orders[rid] = orders.orders[rid][:i] + orders.orders[rid][i + 1:]
+                break
 
     def do_POST(s):
         path = s.path.split("/")
@@ -85,16 +104,16 @@ class MobileHandler(server.BaseHTTPRequestHandler):
         rest_id = ''
         for param in str(s.rfile.read())[2:-1].split('&'):
             key, value = param.split('=')
-            if key == 'rest_id':
-                rest_id = value
-                continue
-
             order[key] = value
 
+        order["created"] = time.strftime("%c")
+
+        order["id"] = randint(0, 1000000)
+
         try:
-            orders.orders[rest_id].append(order)
+            orders.orders[uuid].append(order)
         except KeyError:
-            orders.orders[rest_id] = [order]
+            orders.orders[uuid] = [order]
         print(orders.orders)
         pass
 
