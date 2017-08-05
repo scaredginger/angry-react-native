@@ -219,6 +219,18 @@ let menu = {
   }
 };
 
+function loadMenu(id, component) {
+  console.log("loading menu for " + id)
+  fetch(api_host + "/menu/" + restaurant_id, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {
+        menu = responseData;
+        console.log("Menu response: ", menu);
+        component.forceUpdate();
+    })
+    .done();
+}
+
 export default class EatingScreen extends React.Component {
 
 constructor() {
@@ -234,8 +246,12 @@ constructor() {
       itemsInCart: false,
       cartItemIds: [],
       tableNumber: 7,
-      resID: 5
+      resID: restaurant_id,
+      apiHost: api_host
     }
+
+    accessor = this;
+    loadMenu(restaurant_id, this)
 }
 
   render() {
@@ -302,7 +318,7 @@ constructor() {
     view = (
       <Container>
         <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)} />
-        <CheckoutView menu={menu} resID={this.state.resID} cartItemIds={this.state.cartItemIds} tableNumber={this.state.tableNumber}/>
+        <CheckoutView menu={menu} apiHost={this.state.apiHost} resID={this.state.resID} cartItemIds={this.state.cartItemIds} tableNumber={this.state.tableNumber}/>
       </Container>
     );
     break;
