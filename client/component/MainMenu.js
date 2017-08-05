@@ -32,7 +32,7 @@ export default class MainMenu extends React.Component {
       for(let i = 0; i <  mainCategory.length; i++) {
         const cat = mainCategory[i];
         catItems.push(
-          <ListItem><TouchableHighlight key={cat} onPress={() => {this.props.onPress({category: cat, buttonPressed: 1})}} underlayColor="gray"><Text> {cat} </Text></TouchableHighlight></ListItem>
+          <ListItem onPress={() => {this.props.onPress({category: cat, buttonPressed: 1})}}><Text> {capitalizeFirstLetter(cat)} </Text></ListItem>
         )
       }
       return catItems;
@@ -56,4 +56,14 @@ export default class MainMenu extends React.Component {
         {this.menuToCardView(this.props.menu)}
       </View>
   }
+}
+
+const styles = StyleSheet.create({
+  listSizing: {
+      flex: 10
+  }
+});
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -8,8 +8,8 @@ export default class MenuHeader extends React.Component {
   render() {
     let buttonCheck = this.props.buttonPressed;
     console.log(buttonCheck);
-    if(buttonCheck != 1) {
-      var button = (<Text></Text>)
+    if(buttonCheck != 1 && buttonCheck != 3 && buttonCheck != 4) {
+      var button = (<Left></Left>)
     } else{
       var button = (<Left>
                       <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
@@ -19,13 +19,13 @@ export default class MenuHeader extends React.Component {
     }
     return (
 
-                <Header>
+                <Header backgroundColor="#49A7FD">
                     {button}
                     <Body style={styles.hackyHack}>
                       <Title>Menu{this.props.category ? ' - ' + this.props.category : ''}</Title>
                     </Body>
                     <Right style={styles.hackyHack}>
-                    <Button transparent onPress={() => {this.props.onFilter({buttonPressed: 2})}}>
+                    <Button transparent onPress={() => {this.props.onFilter({buttonPressed: buttonCheck-1})}}>
                         <Text>Filter</Text>
                     </Button>
                     </Right>

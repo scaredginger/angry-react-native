@@ -27,7 +27,9 @@ import {
 import MenuHeader from './component/MenuHeader';
 import MainMenu from './component/MainMenu';
 import SubMenu from './component/SubMenu';
-import FilterBar from './component/FilterBar'
+import FilterBar from './component/FilterBar';
+import ItemView from './component/ItemView';
+import CheckoutView from './component/CheckoutView';
 
 let menu = {
   "vendor": {
@@ -136,7 +138,13 @@ constructor() {
       menuItems: [],
       buttonPressed: 0,
       filtered: false,
-      filterTags: []
+      filterTags: [],
+      itemSelected: "",
+      currentItemId: 0,
+      itemsInCart: false,
+      cartItemIds: [],
+      tableNumber: 0,
+      resID: 5
     }
 }
 
@@ -170,7 +178,7 @@ constructor() {
               <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)}></MenuHeader>
               <Content>
                 <List>
-                  <SubMenu menu={menu} category={this.state.category}></SubMenu>
+                  <SubMenu menu={menu} buttonPressed={this.state.buttonPressed} onSelect={this.setState.bind(this)} itemSelected={this.state.itemSelected} category={this.state.category}></SubMenu>
                 </List>
               </Content>
         </Container>
@@ -182,6 +190,22 @@ constructor() {
       <Container>
         <FilterBar menu={menu} onBackPressed={this.setState.bind(this)}>
         </FilterBar>
+      </Container>
+    );
+    break;
+    case 3:
+    view = (
+      <Container>
+        <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)} />
+        <ItemView menu={menu} cartItemIds={this.state.cartItemIds} buttonPressed={this.state.buttonPressed} itemsInCart={this.state.itemsInCart} currentItemId={this.state.currentItemId} itemSelected={this.state.itemSelected} onBeginCheckout={this.setState.bind(this)} onAddToCart={this.setState.bind(this)}/>
+      </Container>
+    );
+    break;
+    case 4:
+    view = (
+      <Container>
+        <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)} />
+        <CheckoutView menu={menu} resID={this.state.resID} cartItemIds={this.state.cartItemIds} tableNumber={this.state.tableNumber}/>
       </Container>
     );
     break;
