@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Image,
   Platform,
@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   AppRegistry,
-  View
+  View,
+  DeviceEventEmitter
 } from 'react-native';
 import {
   Header,
@@ -24,12 +25,97 @@ import {
   List,
   ListItem
 } from 'native-base';
+
 import MenuHeader from './component/MenuHeader';
 import MainMenu from './component/MainMenu';
 import SubMenu from './component/SubMenu';
 import FilterBar from './component/FilterBar';
 import ItemView from './component/ItemView';
 import CheckoutView from './component/CheckoutView';
+
+import Beacons from 'react-native-ibeacons';
+
+var region = {
+    identifier: 'UniHack restaurant',
+    uuid: '5B45DD15-DBF1-4F78-ABFF-2AFE41DD040C'
+};
+
+Beacons.requestWhenInUseAuthorization();
+
+Beacons.startMonitoringForRegion(region);
+Beacons.startRangingBeaconsInRegion(region);
+
+Beacons.startUpdatingLocation();
+
+var restaurant_id = region.uuid; // Static for demonstration
+var beacon_history = [];
+var table_number = -1;
+
+var subscription = DeviceEventEmitter.addListener(
+  'beaconsDidRange',
+  (data) => {
+    // data.region - The current region
+    // data.region.identifier
+    // data.region.uuid
+
+    // data.beacons - Array of all beacons inside a region
+    //  in the following structure:
+    //    .uuid
+    //    .major - The major version of a beacon
+    //    .minor - The minor version of a beacon
+    //    .rssi - Signal strength: RSSI value (between -100 and 0)
+    //    .proximity - Proximity value, can either be "unknown", "far", "near" or "immediate"
+    //    .accuracy - The accuracy of a beacon
+
+    //console.log(data.beacons);
+
+    var beacons = data.beacons;
+    var max = ["#", -101];
+
+    for (i = 0; i < beacons.length; i++) {
+      beacon = beacons[i];
+
+      if (max[1] < beacon.rssi) {
+        max[1] = beacon.rssi;
+        max[0] = beacon.minor;
+      }
+    }
+
+    console.log("Current Table Number: ", max[0])
+
+    if (beacon_history.length > 50) {
+      beacon_history.shift();
+      beacon_history.push(beacon.minor);
+    } else {
+      beacon_history.push(beacon.minor);
+    }
+
+    table_number = getTableNumber();
+
+  }
+);
+
+function getTableNumber() {
+  var count = {};
+  for (i = 0; i < beacon_history.length; i++) {
+    if (count[beacon_history[i]] != undefined) {
+      count[beacon_history[i]] += 1;
+    } else {
+      count[beacon_history[i]] = 1;
+    }
+  }
+
+  mode = ["#", 0];
+
+  Object.keys(count).forEach(function(table) {
+    if (mode[1] < count[table]) {
+      mode[1] = count[table];
+      mode[0] = table;
+    }
+  });
+
+  return mode[0]
+}
 
 let menu = {
   "vendor": {
