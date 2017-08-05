@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableHighlight,
+  AppRegistry,
   View
 } from 'react-native';
 import {
@@ -23,10 +24,10 @@ import {
   List,
   ListItem
 } from 'native-base';
-import MenuHeader from 'components/MenuHeader';
-import MainMenu from 'components/MainMenu';
-import SubMenu from 'components/SubMenu';
-import FilterBar from 'components/FilterBar'
+import MenuHeader from './component/MenuHeader';
+import MainMenu from './component/MainMenu';
+import SubMenu from './component/SubMenu';
+import FilterBar from './component/FilterBar'
 
 let menu = {
   "vendor": {
@@ -140,7 +141,7 @@ constructor() {
       buttonPressed: 0
     }
 }
-  
+
   render() {
     console.log('rendering eating')
 
@@ -149,7 +150,7 @@ constructor() {
     console.log(this.state);
 
     switch (this.state.buttonPressed) {
-      case 0: 
+      case 0:
       console.log("Case 0");
       view =  (
         //sub menu, with category from state
@@ -163,7 +164,7 @@ constructor() {
         </Container>
       );
       break;
-      case 1: 
+      case 1:
       console.log("Case 1");
       view =  (
         //main menu
@@ -177,13 +178,13 @@ constructor() {
         </Container>
     );
     break;
-    case 2: 
+    case 2:
     console.log("Case 2");
     view =  (
       <Container>
         <FilterBar>
         </FilterBar>
-      </Container> 
+      </Container>
     );
     break;
     default:
@@ -216,7 +217,7 @@ constructor() {
       );
     }
   }
-  
+
 
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync(
@@ -321,3 +322,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+AppRegistry.registerComponent('client', () => EatingScreen);

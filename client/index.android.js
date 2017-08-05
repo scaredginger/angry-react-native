@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableHighlight,
+  AppRegistry,
   View
 } from 'react-native';
 import {
@@ -321,3 +322,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+AppRegistry.registerComponent('client', () => EatingScreen);
