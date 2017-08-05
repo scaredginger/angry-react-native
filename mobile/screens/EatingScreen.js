@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  TouchableHighlight,
+  View
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import {
@@ -25,9 +26,10 @@ import {
 } from 'native-base';
 import { MonoText } from '../components/StyledText';
 import { MenuHeader } from '../components/MenuHeader';
-import { MainCategory } from '../components/MenuCategoryView'
+import MainMenu from '../components/MainMenu';
+import SubMenu from '../components/SubMenu';
 
-var menu = {
+let menu = {
   "vendor": {
     "id": "a_unique_identifier",
     "name": "Our Sample Restuarant",
@@ -130,33 +132,45 @@ export default class EatingScreen extends React.Component {
     header: null,
   };
 
-  constructor(props) {
-    super(props);
+
+constructor() {
+    super();
     this.state = {
-      viewOne: true
-    };
-  }
-
-  changeView(){
-     this.setState({
-       viewOne: !this.state.viewOne
-     })
-  };
-
+      category: null,
+      menuItems: [],
+      buttonPressed: false
+    }
+}
+  
   render() {
-    if(!this.state.viewOne) return <MainCategory changeView={ () => this.changeView() } />
-    return (
-    <Container>
-          <MenuHeader></MenuHeader>
-          <Content>
-            <List>
-              {getMenuFromServer()}
-            </List>
-          </Content>
-    </Container>
+    if(this.state.buttonPressed) {
+      return (
+        //sub menu, with category from state
+        <Container>
+              <MenuHeader></MenuHeader>
+              <Content>
+                <List>
+                  <SubMenu menu={menu} category={this.state.category}></SubMenu>
+                </List>
+              </Content>
+        </Container>
+      );
+    } else{
+      return (
+        //main menu
+        <Container>
+              <MenuHeader></MenuHeader>
+              <Content>
+                <List>
+                  <MainMenu menu={menu} onPress={this.setState.bind(this)}></MainMenu>
+                </List>
+              </Content>
+        </Container>
     );
+    }
   }
 
+/*
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
       const learnMoreButton = (
@@ -179,6 +193,7 @@ export default class EatingScreen extends React.Component {
       );
     }
   }
+  
 
   _handleLearnMorePress = () => {
     WebBrowser.openBrowserAsync(
@@ -191,40 +206,9 @@ export default class EatingScreen extends React.Component {
       'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     );
   };
+  */
 }
 
-function getMenuFromServer() {
-
-    return menuToCardView(menu);
-
-  }
-
-  function menuToCardView(menu) {
-
-  //first here, parse the JSON ready to be handled by the card views
-
-  let mainCategory = [];
-
-  //menu["vendor"]["menu"]["structure"] gives an object containing main categories, each of which is an object
-
-  for(var i in menu["vendor"]["menu"]["structure"]) {
-    mainCategory.push(i);
-  }
-
-  function getMainCats() {
-      var catItems = [];
-      for(var i = 0; i <  mainCategory.length; i++) {
-        var cat = mainCategory[i];
-        catItems.push(
-          <ListItem><Text> {cat} </Text></ListItem>
-        )
-      }
-      return catItems;
-  }
-
-  return getMainCats();
-  
-  }
 
 const styles = StyleSheet.create({
   container: {
