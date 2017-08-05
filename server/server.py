@@ -7,7 +7,7 @@ import json
 #HOST_NAME = 'example.net' # !!!REMEMBER TO CHANGE THIS!!!
 PORT_NUMBER = 8000
 
-def respond_unknown (s, path):
+def respond_unknown (s):
     s.send_response(400)
     s.send_header(bytes("Content-type", "utf-8"), bytes("text/html", "utf-8"))
     s.end_headers()
@@ -40,15 +40,18 @@ class MobileHandler(server.BaseHTTPRequestHandler):
         path = s.path.split("/")
         path.pop(0)
 
+        if len(path) < 2:
+            respond_unknown(s)
+            return
+
         if path[0] == "menu":
             restaurant_id = path[1]
 
             respond_menu(s, restaurant_id)
         elif path[0] == "order":
             restaurant_id = path[1]
-
         else:
-            respond_unknown(s, s.path)
+            respond_unknown(s)
 
 
 server_class = server.HTTPServer
