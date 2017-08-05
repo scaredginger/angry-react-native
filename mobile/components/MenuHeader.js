@@ -3,6 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 import {Container, Header, Title, Button, Icon, Left, Right, Body} from 'native-base';
 
 export class MenuHeader extends React.Component {
+
   render() {
     return (
                 <Header>

@@ -19,43 +19,108 @@ import {
   Icon,
   Container,
   Content,
-  Footer
+  Footer,
+  List,
+  ListItem
 } from 'native-base';
 import { MonoText } from '../components/StyledText';
 import { MenuHeader } from '../components/MenuHeader';
+import { MainCategory } from '../components/MenuCategoryView'
 
 var menu = {
-  "entrees":
-  {
-    "garlic bread":
-    {
-      "price": 6.00,
-      "serves": 2,
-      "desc": "a piece for each gender",
-    },
-  },
-  "mains":
-  {
-    "smashed avacado on sourdough":
-    {
-      "price": 23.00,
-      "serves": 1,
-      "desc": "consumption may disqualify you from owning property",
-    }
-  },
-  "drinks":
-  {
-    "avaccino":
-    {
-      "price": 5.50,
-      "serves": 1,
-      "desc": "cappuccino served in an avacado"
-    },
-    "deconstructed latte":
-    {
-      "price": 5.00,
-      "serves" : 1,
-      "desc": "DIY? more like DI-WHY"
+  "vendor": {
+    "id": "a_unique_identifier",
+    "name": "Our Sample Restuarant",
+    "location": "101 Angry Lane, Clayton VIC",
+
+    "menu": {
+      "products": [
+        {
+          "id": 0,
+          "name": "Garlic Bread",
+          "price": 400,
+          "variants": [],
+          "tags": [
+            "entrees",
+            "vegetarian",
+            "nut free",
+          ]
+        },
+
+        {
+          "id": 1,
+          "name": "Sandwhich",
+          "price": 800,
+          "variants": ["Chicken", "Steak"],
+          "tags": [
+            "mains",
+            "nut free",
+          ]
+        },
+
+        {
+          "id": 2,
+          "name": "Cheesecake",
+          "price": 600,
+          "variants": [],
+          "tags": [
+            "desserts",
+            "specials"
+          ]
+        },
+
+        {
+          "id": 3,
+          "name": "Spring rolls",
+          "price": 300,
+          "variants": [],
+          "tags": [
+            "entrees",
+            "vegetarian"
+          ]
+        },
+
+        {
+          "id": 4,
+          "name": "Steak and side",
+          "price": 1500,
+          "variants": ["Rare", "Medium", "Well Done"],
+          "tags": [
+            "mains",
+            "specials"
+          ]
+        },
+
+        {
+          "id": 5,
+          "name": "Ice cream",
+          "price": 400,
+          "variants": ["Chocolate", "Vanilla", "Strawberry"],
+          "tags": [
+            "dessert",
+            "specials"
+          ]
+        }
+      ],
+
+      "structure": {
+        "entrees": {
+
+        },
+        "main": {
+
+        },
+        "desserts": {
+
+        },
+        "specials": {
+
+        }
+      },
+
+      "style": {
+
+      }
     }
   }
 };
@@ -65,12 +130,28 @@ export default class EatingScreen extends React.Component {
     header: null,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewOne: true
+    };
+  }
+
+  changeView(){
+     this.setState({
+       viewOne: !this.state.viewOne
+     })
+  };
+
   render() {
+    if(!this.state.viewOne) return <MainCategory changeView={ () => this.changeView() } />
     return (
     <Container>
           <MenuHeader></MenuHeader>
           <Content>
-            <Text> Hi there. </Text>
+            <List>
+              {getMenuFromServer()}
+            </List>
           </Content>
     </Container>
     );
@@ -120,13 +201,28 @@ function getMenuFromServer() {
 
   function menuToCardView(menu) {
 
-  return (
-  <Card>
-    <Text> Entree </Text>
-    <CardItem>
-      <Text> {menu["entrees"]["garlic bread"]["desc"]} </Text>
-    </CardItem>
-  </Card> );
+  //first here, parse the JSON ready to be handled by the card views
+
+  let mainCategory = [];
+
+  //menu["vendor"]["menu"]["structure"] gives an object containing main categories, each of which is an object
+
+  for(var i in menu["vendor"]["menu"]["structure"]) {
+    mainCategory.push(i);
+  }
+
+  function getMainCats() {
+      var catItems = [];
+      for(var i = 0; i <  mainCategory.length; i++) {
+        var cat = mainCategory[i];
+        catItems.push(
+          <ListItem><Text> {cat} </Text></ListItem>
+        )
+      }
+      return catItems;
+  }
+
+  return getMainCats();
   
   }
 
