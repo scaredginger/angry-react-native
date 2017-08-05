@@ -1,0 +1,97 @@
+{
+  "vendor": {
+    "id": "a_unique_identifier",
+    "name": "Our Sample Restuarant",
+    "location": "101 Angry Lane, Clayton VIC",
+
+    "menu": {
+      "products": [
+        {
+          "id": 0,
+          "name": "Garlic Bread",
+          "price": 400,
+          "variants": [],
+          "tags": [
+            "entrees",
+            "vegetarian",
+            "nut free",
+          ]
+        },
+
+        {
+          "id": 1,
+          "name": "Sandwhich",
+          "price": 800,
+          "variants": ["Chicken", "Steak"],
+          "tags": [
+            "mains",
+            "nut free",
+          ]
+        },
+
+        {
+          "id": 2,
+          "name": "Cheesecake",
+          "price": 600,
+          "variants": [],
+          "tags": [
+            "desserts",
+            "specials"
+          ]
+        },
+
+        {
+          "id": 3,
+          "name": "Spring rolls",
+          "price": 300,
+          "variants": [],
+          "tags": [
+            "entrees",
+            "vegetarian"
+          ]
+        },
+
+        {
+          "id": 4,
+          "name": "Steak and side",
+          "price": 1500,
+          "variants": ["Rare", "Medium", "Well Done"],
+          "tags": [
+            "mains",
+            "specials"
+          ]
+        },
+
+        {
+          "id": 5,
+          "name": "Ice cream",
+          "price": 400,
+          "variants": ["Chocolate", "Vanilla", "Strawberry"],
+          "tags": [
+            "dessert",
+            "specials"
+          ]
+        }
+      ],
+
+      "structure": {
+        "entrees": {
+
+        },
+        "main": {
+
+        },
+        "desserts": {
+
+        },
+        "specials": {
+
+        }
+      },
+
+      "style": {
+
+      }
+    }
+  }
+}
