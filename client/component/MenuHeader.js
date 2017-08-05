@@ -2,18 +2,18 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import {Container, Header, Title, Button, Icon, Left, Right, Body} from 'native-base';
 
-export class MenuHeader extends React.Component {
+export default class MenuHeader extends React.Component {
 
   render() {
-    let button = this.props.category ? 
+    let button = this.props.category ?
                     (<Left>
                       <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
                         <Icon name="ios-arrow-back" />
                       </Button>
-                    </Left>) : 
+                    </Left>) :
                     <Text></Text>
     return (
-    
+
                 <Header>
                     {button}
                     <Body style={styles.hackyHack}>
