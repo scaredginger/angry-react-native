@@ -1,18 +1,22 @@
 import json
+import time
 
 orders = {
     "restaurant-id": [
         {
-            "name": "garlic bread",
-            "table": 1
+            "item": "garlic bread",
+            "table": 1,
+            "created": time.strftime("%c")
         },
         {
-            "name": "sandwhich",
-            "table": 2
+            "item": "sandwhich",
+            "table": 2,
+            "created": time.strftime("%c")
         },
         {
-            "name": "cheese",
-            "table": 3
+            "item": "cheese",
+            "table": 3,
+            "created": time.strftime("%c")
         }
     ]
 }
