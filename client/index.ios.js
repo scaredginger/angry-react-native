@@ -48,9 +48,12 @@ Beacons.startRangingBeaconsInRegion(region);
 
 Beacons.startUpdatingLocation();
 
+var api_host = "http://118.138.101.61:8000";
 var restaurant_id = region.uuid; // Static for demonstration
-var beacon_history = [];
+let beacon_history = [];
 var table_number = -1;
+
+let accessor = null;
 
 var subscription = DeviceEventEmitter.addListener(
   'beaconsDidRange',
@@ -81,18 +84,22 @@ var subscription = DeviceEventEmitter.addListener(
         max[0] = beacon.minor;
       }
     }
-
-    console.log("Current Table Number: ", max[0])
-
-    if (beacon_history.length > 50) {
+    console.log("Strongest: ", max[0])
+    console.log(beacon_history);
+    if (beacon_history.length > 9) {
       beacon_history.shift();
-      beacon_history.push(beacon.minor);
+      beacon_history.push(max[0]);
     } else {
-      beacon_history.push(beacon.minor);
+      beacon_history.push(max[0]);
     }
 
     table_number = getTableNumber();
 
+    if (accessor) {
+      accessor.setState({
+        tableNumber: table_number
+      })
+    }
   }
 );
 
@@ -106,7 +113,7 @@ function getTableNumber() {
     }
   }
 
-  mode = ["#", 0];
+  var mode = ["#", 0];
 
   Object.keys(count).forEach(function(table) {
     if (mode[1] < count[table]) {
@@ -121,92 +128,16 @@ function getTableNumber() {
 let menu = {
   "vendor": {
     "id": "a_unique_identifier",
-    "name": "Our Sample Restuarant",
+    "name": "loading...",
     "location": "101 Angry Lane, Clayton VIC",
 
     "menu": {
       "products": [
-        {
-          "id": 0,
-          "name": "Garlic Bread",
-          "price": 400,
-          "variants": [],
-          "tags": [
-            "entrees",
-            "vegetarian",
-            "nut free",
-          ]
-        },
 
-        {
-          "id": 1,
-          "name": "Sandwhich",
-          "price": 800,
-          "variants": ["Chicken", "Steak"],
-          "tags": [
-            "mains",
-            "nut free",
-          ]
-        },
-
-        {
-          "id": 2,
-          "name": "Cheesecake",
-          "price": 600,
-          "variants": [],
-          "tags": [
-            "desserts",
-            "specials"
-          ]
-        },
-
-        {
-          "id": 3,
-          "name": "Spring rolls",
-          "price": 300,
-          "variants": [],
-          "tags": [
-            "entrees",
-            "vegetarian"
-          ]
-        },
-
-        {
-          "id": 4,
-          "name": "Steak and side",
-          "price": 1500,
-          "variants": ["Rare", "Medium", "Well Done"],
-          "tags": [
-            "mains",
-            "specials"
-          ]
-        },
-
-        {
-          "id": 5,
-          "name": "Ice cream",
-          "price": 400,
-          "variants": ["Chocolate", "Vanilla", "Strawberry"],
-          "tags": [
-            "dessert",
-            "specials"
-          ]
-        }
       ],
 
       "structure": {
-        "entrees": {
 
-        },
-        "mains": {
-
-        },
-        "desserts": {
-
-        },
-        "specials": {
-
-        }
       },
 
       "style": {
@@ -216,24 +147,42 @@ let menu = {
   }
 };
 
+function loadMenu(id, component) {
+  console.log("loading menu for " + id)
+  fetch(api_host + "/menu/" + restaurant_id, {method: "GET"})
+    .then((response) => response.json())
+    .then((responseData) => {
+        menu = responseData;
+        console.log("Menu response: ", menu);
+        component.forceUpdate();
+    })
+    .done();
+}
+
+
 export default class EatingScreen extends React.Component {
 
-constructor() {
-    super();
-    this.state = {
-      category: null,
-      menuItems: [],
-      buttonPressed: -1,
-      filtered: false,
-      filterTags: [],
-      itemSelected: "",
-      currentItemId: 0,
-      itemsInCart: false,
-      cartItemIds: [],
-      tableNumber: 7,
-      resID: 5
-    }
-}
+  constructor() {
+      super();
+      this.state = {
+        category: null,
+        menuItems: [],
+        buttonPressed: -1,
+        filtered: false,
+        filterTags: [],
+        itemSelected: "",
+        currentItemId: 0,
+        itemsInCart: false,
+        cartItemIds: [],
+        tableNumber: 0,
+        resID: restaurant_id,
+        apiHost: api_host
+      }
+
+      accessor = this;
+
+      loadMenu(restaurant_id, this)
+  }
 
   render() {
     console.log('rendering eating')
@@ -299,7 +248,7 @@ constructor() {
     view = (
       <Container>
         <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)} />
-        <CheckoutView menu={menu} resID={this.state.resID} cartItemIds={this.state.cartItemIds} tableNumber={this.state.tableNumber}/>
+        <CheckoutView menu={menu} apiHost={this.state.apiHost} resID={this.state.resID} cartItemIds={this.state.cartItemIds} tableNumber={this.state.tableNumber}/>
       </Container>
     );
     break;
