@@ -1,7 +1,6 @@
 import time
 import os.path
 from http import server
-import mysql.connector
 import json
 
 #HOST_NAME = 'example.net' # !!!REMEMBER TO CHANGE THIS!!!
