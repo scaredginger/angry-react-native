@@ -15,7 +15,7 @@ angular.module('restaurantClientApp')
       'Karma'
     ];
 
-    $rootScope.orders = []
+    $rootScope.orders = [];
 
     $http.get("http://localhost:8000/view/restaurant-id").
       then(function(response) {
