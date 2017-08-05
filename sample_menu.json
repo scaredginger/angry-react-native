@@ -1,0 +1,40 @@
+
+/*
+each menu item should include a price, description and serving size
+*/
+
+{
+  "entrees":
+  {
+    "garlic bread":
+    {
+      "price": 6.00,
+      "serves": 2,
+      "desc": "a piece for each gender",
+    },
+  },
+  "mains":
+  {
+    "smashed avacado on sourdough":
+    {
+      "price": 23.00,
+      "serves": 1,
+      "desc": "consumption may disqualify you from owning property",
+    }
+  },
+  "drinks":
+  {
+    "avaccino":
+    {
+      "price": 5.50,
+      "serves": 1,
+      "desc": "cappuccino served in an avacado"
+    },
+    "deconstructed latte":
+    {
+      "price": 5.00,
+      "serves" : 1,
+      "desc": "DIY? more like DI-WHY"
+    }
+  }
+}
