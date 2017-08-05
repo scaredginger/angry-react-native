@@ -33,7 +33,7 @@ export default class MainMenu extends React.Component {
       for(let i = 0; i <  mainCategory.length; i++) {
         const cat = mainCategory[i];
         catItems.push(
-          <ListItem><TouchableHighlight key={cat} onPress={() => {this.props.onPress({category: cat, buttonPressed: true})}} underlayColor="gray"><Text> {cat} </Text></TouchableHighlight></ListItem>
+          <ListItem><TouchableHighlight key={cat} onPress={() => {this.props.onPress({category: cat, buttonPressed: 1})}} underlayColor="gray"><Text> {cat} </Text></TouchableHighlight></ListItem>
         )
       }
       return catItems;

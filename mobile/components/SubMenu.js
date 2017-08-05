@@ -40,7 +40,6 @@ export default class SubMenu extends React.Component {
     getFucked() {
 
         subItems = this.props.category;
-        console.log(subItems);
         let products = this.props.menu.vendor.menu.products;
         let goodMenuItems = [];
 
