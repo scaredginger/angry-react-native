@@ -18,10 +18,11 @@ angular.module('restaurantClientApp')
 
     $scope.removeItem = function (id) {
       console.log("Removing", id);
-      $http.get(api_server_str + "/delete/" + restaurant_id + "/" + id, function(response) {
-        console.log("Delete request responded", response);
-        refreshData();
-      })
+      $http.get(api_server_str + "/delete/" + restaurant_id + "/" + id).
+        then(function(response) {
+          console.log("Delete request responded", response);
+          refreshData();
+        });
     }
 
     function tick() {
