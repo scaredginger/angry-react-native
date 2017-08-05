@@ -1,5 +1,6 @@
 import time
 from http import server
+import mysql.connector
 
 #HOST_NAME = 'example.net' # !!!REMEMBER TO CHANGE THIS!!!
 PORT_NUMBER = 8000
