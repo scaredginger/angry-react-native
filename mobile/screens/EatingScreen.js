@@ -28,6 +28,7 @@ import { MonoText } from '../components/StyledText';
 import { MenuHeader } from '../components/MenuHeader';
 import MainMenu from '../components/MainMenu';
 import SubMenu from '../components/SubMenu';
+import FilterBar from '../components/FilterBar'
 
 let menu = {
   "vendor": {
@@ -138,36 +139,60 @@ constructor() {
     this.state = {
       category: null,
       menuItems: [],
-      buttonPressed: false
+      buttonPressed: 0
     }
 }
   
   render() {
-    if(this.state.buttonPressed) {
-      return (
+    console.log('rendering eating')
+
+    let view = null;
+
+    console.log(this.state);
+
+    switch (this.state.buttonPressed) {
+      case 0: 
+      console.log("Case 0");
+      view =  (
         //sub menu, with category from state
         <Container>
               <MenuHeader category={this.state.category} onBackPressed={this.setState.bind(this)}></MenuHeader>
-              <Content>
-                <List>
-                  <SubMenu menu={menu} category={this.state.category}></SubMenu>
-                </List>
-              </Content>
-        </Container>
-      );
-    } else{
-      return (
-        //main menu
-        <Container>
-              <MenuHeader></MenuHeader>
               <Content>
                 <List>
                   <MainMenu menu={menu} onPress={this.setState.bind(this)}></MainMenu>
                 </List>
               </Content>
         </Container>
+      );
+      break;
+      case 1: 
+      console.log("Case 1");
+      view =  (
+        //main menu
+        <Container>
+              <MenuHeader></MenuHeader>
+              <Content>
+                <List>
+                  <SubMenu menu={menu} category={this.state.category}></SubMenu>
+                </List>
+              </Content>
+        </Container>
     );
+    break;
+    case 2: 
+    console.log("Case 2");
+    view =  (
+      <Container>
+        <FilterBar>
+        </FilterBar>
+      </Container> 
+    );
+    break;
+    default:
+      console.log(this.state.buttonPressed);
     }
+    console.log(view)
+    return view;
   }
 
 /*

@@ -7,7 +7,7 @@ export class MenuHeader extends React.Component {
   render() {
     let button = this.props.category ? 
                     (<Left>
-                      <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: false})}}>
+                      <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
                         <Icon name="ios-arrow-back" />
                       </Button>
                     </Left>) : 
