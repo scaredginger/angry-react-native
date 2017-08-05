@@ -1,17 +1,22 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Container, Header, Title, Button, Icon, Left, Right, Body} from 'native-base';
 
 export default class MenuHeader extends React.Component {
 
   render() {
-    let button = this.props.category ?
-                    (<Left>
+    let buttonCheck = this.props.buttonPressed;
+    console.log(buttonCheck);
+    if(buttonCheck != 1) {
+      var button = (<Text></Text>)
+    } else{
+      var button = (<Left>
                       <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
-                        <Icon name="ios-arrow-back" />
+                        <Text style={styles.backButton}>Back</Text> 
                       </Button>
-                    </Left>) :
-                    <Text></Text>
+                    </Left>)
+    }
     return (
 
                 <Header>
@@ -20,8 +25,8 @@ export default class MenuHeader extends React.Component {
                       <Title>Menu{this.props.category ? ' - ' + this.props.category : ''}</Title>
                     </Body>
                     <Right style={styles.hackyHack}>
-                    <Button transparent>
-                        <Icon name="ios-menu" />
+                    <Button transparent onPress={() => {this.props.onFilter({buttonPressed: 2})}}>
+                        <Text>Filter</Text>
                     </Button>
                     </Right>
                 </Header>
@@ -32,5 +37,8 @@ export default class MenuHeader extends React.Component {
 const styles = StyleSheet.create({
 	hackyHack: {
 		flex: 1
-	}
+	},
+  backButton: {
+    fontSize: 20
+  }
 });

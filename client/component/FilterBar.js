@@ -16,20 +16,41 @@ import {
   Card,
   CardItem,
   Button,
-  Icon,
   Container,
   Content,
   Footer,
   List,
+  CheckBox,
   ListItem
 } from 'native-base';
 
 export default class FilterBar extends React.Component {
     render(){
         return (
-            <View>
-                <Text>Look at these fun options.</Text>
+            <View style={styles.mainFilterView}>
+                <Text>Filter by these options:</Text>
+                    {this.generateFilters()}
+                <Button>
+                    <Text>Done</Text>
+                </Button>
             </View>
         );
     }
+
+    generateFilters() {
+        const menu = this.props.menu;
+
+        //loop through menu and find all tags to sort by.
+
+        //this should return to a item view with filtered tags
+    }    
 }
+
+const styles = StyleSheet.create({
+    mainFilterView: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+});

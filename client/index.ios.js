@@ -128,17 +128,15 @@ let menu = {
 };
 
 export default class EatingScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
 
 constructor() {
     super();
     this.state = {
       category: null,
       menuItems: [],
-      buttonPressed: 0
+      buttonPressed: 0,
+      filtered: false,
+      filterTags: []
     }
 }
 
@@ -155,7 +153,7 @@ constructor() {
       view =  (
         //sub menu, with category from state
         <Container>
-              <MenuHeader category={this.state.category} onBackPressed={this.setState.bind(this)}></MenuHeader>
+              <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)}></MenuHeader>
               <Content>
                 <List>
                   <MainMenu menu={menu} onPress={this.setState.bind(this)}></MainMenu>
@@ -169,7 +167,7 @@ constructor() {
       view =  (
         //main menu
         <Container>
-              <MenuHeader></MenuHeader>
+              <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)}></MenuHeader>
               <Content>
                 <List>
                   <SubMenu menu={menu} category={this.state.category}></SubMenu>
@@ -182,7 +180,7 @@ constructor() {
     console.log("Case 2");
     view =  (
       <Container>
-        <FilterBar>
+        <FilterBar menu={menu}>
         </FilterBar>
       </Container>
     );
@@ -193,44 +191,6 @@ constructor() {
     console.log(view)
     return view;
   }
-
-/*
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    );
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
-  */
 }
 
 
