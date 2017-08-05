@@ -68,7 +68,8 @@ export default class ItemView extends React.Component {
 
         console.log("Item index is: " + itemIndex);
 
-        newCartItemIds = this.props.cartItemIds;
+        var temp = this.props.cartItemIds;
+        newCartItemIds = temp.slice();
         newCartItemIds.push(itemIndex);
 
         return (

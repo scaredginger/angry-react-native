@@ -47,7 +47,7 @@ export default class CheckoutView extends React.Component {
         let purchases = [];
 
         const cartItemIds = this.props.cartItemIds;
-        for(let i = 0; i < cartItemIds.length; i+=2) {
+        for(let i = 0; i < cartItemIds.length; i++) {
             purchases.push(
                 <ListItem>
                     <Left>
