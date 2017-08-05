@@ -5,16 +5,22 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Table #</th>
-      <th>Product</th>
-      <th>Time since</th>
+      <th class="col-lg-1 col-md-1 col-sm-1">Table #</th>
+      <th class="col-lg-2 col-md-2 col-sm-2">Product</th>
+      <th class="col-lg-4 col-md-4 col-sm-4">Notes</th>
+      <th class="col-lg-3 col-md-3 col-sm-3">Time since</th>
+      <th class="col-lg-2 col-md-2 col-sm-2">Complete</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="item in orders">
       <td>{{item.table}}</td>
-      <td>{{item.name}}</td>
-      <td>Creation Date</td>
+      <td>{{item.item}}</td>
+      <td>{{item.notes}}</td>
+      <td>{{ item.created | date : "mm:ss" }}</td>
+      <td>
+        <div class="btn btn-success" data-ng-attr-id="item.id" ng-click="removeItem(item.id)">Complete</div>
+      </td>
     </tr>
   </tbody>
 </table>
