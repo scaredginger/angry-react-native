@@ -73,6 +73,30 @@ class MobileHandler(server.BaseHTTPRequestHandler):
         else:
             respond_unknown(s)
 
+    def do_POST(s):
+        path = s.path.split("/")
+        path.pop(0)
+
+        if path[0] == 'order':
+            s.do_ORDER(path[1])
+
+    def do_ORDER(s, uuid):
+        order = {}
+        rest_id = ''
+        for param in str(s.rfile.read())[2:-1].split('&'):
+            key, value = param.split('=')
+            if key == 'rest_id':
+                rest_id = value
+                continue
+
+            order[key] = value
+
+        try:
+            orders.orders[rest_id].append(order)
+        except KeyError:
+            orders.orders[rest_id] = [order]
+        print(orders.orders)
+        pass
 
 server_class = server.HTTPServer
 httpd = server_class(("", PORT_NUMBER), MobileHandler)
