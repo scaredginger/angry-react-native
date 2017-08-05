@@ -78,12 +78,29 @@ export default class CheckoutView extends React.Component {
 
     sendOrder() {
 
-        var restaurant_id = this.props.resID;
-        var orderUrl = "waitless.com/order/" + restaurant_id;
+        var orderURL = this.props.apiHost + "/order/" + this.props.resID;
 
         //format the data for POST request then send
+        /*
+          "item": "sandwhich",
+                      "table": 2,
+                      "created": time.strftime("%c")
+                      "created": time.strftime("%c"),
+                      "id": 420
+        */
+        var order = [];
 
-        
+        console.log("Cart items: " + this.props.cartItemIds)
+
+        fetch(orderURL + "test", {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+
+          body: JSON.stringify(order)
+        })
 
     }
 
