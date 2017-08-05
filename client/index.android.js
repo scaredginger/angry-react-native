@@ -23,10 +23,10 @@ import {
   List,
   ListItem
 } from 'native-base';
-import MenuHeader from 'component/MenuHeader';
-import MainMenu from 'component/MainMenu';
-import SubMenu from 'component/SubMenu';
-import FilterBar from 'component/FilterBar'
+import MenuHeader from './component/MenuHeader';
+import MainMenu from './component/MainMenu';
+import SubMenu from './component/SubMenu';
+import FilterBar from './component/FilterBar'
 
 let menu = {
   "vendor": {
