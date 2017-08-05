@@ -5,9 +5,20 @@ import {Container, Header, Title, Button, Icon, Left, Right, Body} from 'native-
 export class MenuHeader extends React.Component {
 
   render() {
+    let button = this.props.category ? 
+                    (<Left>
+                      <Button tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: false})}}>
+                        <Icon name="ios-arrow-back" />
+                      </Button>
+                    </Left>) : 
+                    <Text></Text>
     return (
+    
                 <Header>
-                    <Body style={styles.hackyHack}><Title>Menu</Title></Body>
+                    {button}
+                    <Body style={styles.hackyHack}>
+                      <Title>Menu{this.props.category ? ' - ' + this.props.category : ''}</Title>
+                    </Body>
                     <Right style={styles.hackyHack}>
                     <Button transparent>
                         <Icon name="ios-menu" />
