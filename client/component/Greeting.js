@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     assistance: {
-        fontSize: 24,
         alignSelf: 'center'
     },
     resImage: {

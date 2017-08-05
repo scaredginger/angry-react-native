@@ -48,7 +48,7 @@ export default class SubMenu extends React.Component {
                 let tag = tags[j];
                 if(tag == subItems) {
                     goodMenuItems.push(
-                        <ListItem style={styles.listSizing} onPress={() => {this.props.onSelect({itemSelected: products[i].name, buttonPressed: 3})}}><Left><Text>{products[i]["name"]}</Text></Left><Right><Text>{"$"+Math.floor(products[i]["price"]/100)+'.'+products[i]["price"]%100}</Text></Right></ListItem>
+                        <ListItem style={styles.listSizing} onPress={() => {this.props.onSelect({itemSelected: products[i].name, buttonPressed: 3})}}><Left><Text>{products[i]["name"]}</Text></Left><Right><Text>{"$"+Number(Math.floor(products[i]["price"]/100)+products[i]["price"]%100).toFixed(2)}</Text></Right></ListItem>
                     )
                     break;
                 }

@@ -72,10 +72,11 @@ export default class ItemView extends React.Component {
         newCartItemIds.push(itemIndex);
 
         return (
-            <View>
+            <View style={styles.info}>
                 <Text style={styles.itemName}>{this.props.itemSelected}</Text>
-                <Text style={styles.priceText}>{"$"+Math.floor(items[itemIndex]["price"]/100)+'.'+items[itemIndex]["price"]%100}</Text>
-                <Thumbnail source={items[itemIndex]["image"]}/>
+                <Text> {items[itemIndex]["desc"]}</Text>
+                <Text style={styles.priceText}>{"$"+Number(Math.floor(items[itemIndex]["price"]/100)+items[itemIndex]["price"]%100).toFixed(2)}</Text>
+                <Image source={items[itemIndex]["image"]}/>
             </View>
         );
     }
@@ -85,14 +86,18 @@ const styles = StyleSheet.create({
     mainItemView: {
         flex: 1,
         flexDirection: 'column',
-        alignItems: 'center',
         justifyContent: 'center'
     },
     itemName: {
-        fontSize: 30
+        fontSize: 30,
+        textAlign: 'left'
     },
     priceText: {
-        fontSize: 24
+        fontSize: 24,
+        textAlign: 'left'
+    },
+    info: {
+        justifyContent: 'flex-start'
     },
     bottomButton: {
         alignSelf: 'stretch',
