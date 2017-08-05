@@ -57,7 +57,7 @@ export default class CheckoutView extends React.Component {
                 </Left>
                 <Right>
                 <Text style={styles.priceText}>
-                    {"$"+Math.floor(items[cartItemIds[i]]["price"]/100)+'.'+items[cartItemIds[i]]["price"]%100}
+                    {"$"+Number(Math.floor(items[cartItemIds[i]]["price"]/100)+items[cartItemIds[i]]["price"]%100).toFixed(2)}
                 </Text>
                 </Right>
                 </ListItem>
