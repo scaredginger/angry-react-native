@@ -6,11 +6,6 @@ export class MenuHeader extends React.Component {
   render() {
     return (
                 <Header>
-                	<Left style={styles.hackyHack}>	
-                    <Button transparent>
-                        <Icon name="ios-arrow-back" />
-                    </Button>
-                    </Left>
                     <Body style={styles.hackyHack}><Title>Menu</Title></Body>
                     <Right style={styles.hackyHack}>
                     <Button transparent>
