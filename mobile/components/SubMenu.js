@@ -22,7 +22,9 @@ import {
   Content,
   Footer,
   List,
-  ListItem
+  ListItem,
+  Left,
+  Right
 } from 'native-base';
 
 export default class SubMenu extends React.Component {
@@ -47,16 +49,22 @@ export default class SubMenu extends React.Component {
             for(let j = 0; j < tags.length; j++) {
                 let tag = tags[j];
                 if(tag == subItems) {
-                    //console.log(products[i]["name"]);
                     goodMenuItems.push(
-                        <ListItem><Text>{products[i]["name"]}</Text></ListItem>
+                        <ListItem><Left><Text>{products[i]["name"]}</Text></Left><Right><Text>{"$"+Math.floor(products[i]["price"]/100)+'.'+products[i]["price"]%100}</Text></Right></ListItem>
                     )
                     break;
                 }
             }
         }
-        //console.log(goodMenuItems);
         return goodMenuItems;
     }
 
 }
+
+const styles = StyleSheet.create({
+    item: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    }
+});

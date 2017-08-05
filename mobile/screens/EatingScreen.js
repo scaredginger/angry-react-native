@@ -109,7 +109,7 @@ let menu = {
         "entrees": {
 
         },
-        "main": {
+        "mains": {
 
         },
         "desserts": {
@@ -147,7 +147,7 @@ constructor() {
       return (
         //sub menu, with category from state
         <Container>
-              <MenuHeader></MenuHeader>
+              <MenuHeader category={this.state.category} onBackPressed={this.setState.bind(this)}></MenuHeader>
               <Content>
                 <List>
                   <SubMenu menu={menu} category={this.state.category}></SubMenu>
