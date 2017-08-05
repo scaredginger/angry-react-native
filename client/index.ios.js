@@ -180,7 +180,7 @@ constructor() {
     console.log("Case 2");
     view =  (
       <Container>
-        <FilterBar menu={menu}>
+        <FilterBar menu={menu} onBackPressed={this.setState.bind(this)}>
         </FilterBar>
       </Container>
     );
