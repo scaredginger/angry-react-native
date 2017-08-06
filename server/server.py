@@ -96,26 +96,39 @@ class MobileHandler(server.BaseHTTPRequestHandler):
         path = s.path.split("/")
         path.pop(0)
 
-        if path[0] == 'order':
-            s.do_ORDER(path[1])
+        if len(path) < 2:
+            respond_unknown(s)
+            return
 
-    def do_ORDER(s, uuid):
-        order = {}
-        rest_id = ''
-        for param in str(s.rfile.read())[2:-1].split('&'):
-            key, value = param.split('=')
-            order[key] = value
+        if path[0] == "order":
+            restaurant_id = path[1]
 
-        order["created"] = time.strftime("%c")
+            content_len = int(s.headers['Content-Length'])
+            post_body = s.rfile.read(content_len)
+            s.send_response(200)
+            s.end_headers()
 
-        order["id"] = randint(0, 1000000)
+            data = json.loads(post_body)
+            if len(data) <= 1:
+                s.wfile.write(bytes("Unchanged", "utf-8"))
+                return
 
-        try:
-            orders.orders[uuid].append(order)
-        except KeyError:
-            orders.orders[uuid] = [order]
-        print(orders.orders)
-        pass
+            if restaurant_id not in orders.orders.keys():
+                orders.orders[restaurant_id] = []
+
+            print(data)
+
+            for item in data['items']:
+                orders.orders[restaurant_id].append({
+                    "item": item["name"],
+                    "table": data["table"],
+                    "created": time.strftime("%c"),
+                    "id": item["id"]
+                })
+
+            print(orders.orders)
+
+            s.wfile.write(bytes("Cheers!", "utf-8"))
 
 server_class = server.HTTPServer
 httpd = server_class(("", PORT_NUMBER), MobileHandler)

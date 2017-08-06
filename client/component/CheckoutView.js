@@ -33,7 +33,7 @@ export default class CheckoutView extends React.Component {
             <View style={styles.mainItemView}>
                 {this.getCart()}
                 <Text style={styles.money}>Total: {this.getTotal()}</Text>
-                <Button style={styles.bottomButton} onPress={this.sendOrder()}>
+                <Button style={styles.bottomButton} onPress={() => this.sendOrder()}>
                     <Text>Send Order</Text>
                 </Button>
             </View>
@@ -95,7 +95,6 @@ export default class CheckoutView extends React.Component {
     }
 
     sendOrder() {
-
         var orderURL = this.props.apiHost + "/order/" + this.props.resID;
 
         //format the data for POST request then send
@@ -106,11 +105,21 @@ export default class CheckoutView extends React.Component {
                       "created": time.strftime("%c"),
                       "id": 420
         */
-        var order = [];
+        var order = {
+          "table": this.props.tableNumber,
+          "items": []
+        };
 
-        console.log("Cart items: " + this.props.cartItemIds)
+        for (i = 0; i < this.props.cartItemIds.length; i++) {
+          order["items"].push({
+            "name": this.props.menu.vendor.menu.products[this.props.cartItemIds[i]]["name"],
+            "id": this.props.cartItemIds[i]
+          });
+        }
 
-        fetch(orderURL + "test", {
+        console.log("SENDING ORDER", order)
+
+        fetch(orderURL, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
