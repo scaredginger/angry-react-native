@@ -31,9 +31,6 @@ export default class MenuHeader extends React.Component {
                       <Title>Menu{this.props.category ? ' - ' + this.props.category : ''}</Title>
                     </Body>
                     <Right style={styles.hackyHack}>
-                    <Button style={styles.simpleButton} transparent onPress={() => {this.props.onFilter({buttonPressed: 2})}}>
-                        <Text>Filter</Text>
-                    </Button>
                     </Right>
                 </Header>
     );
