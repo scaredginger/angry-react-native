@@ -33,7 +33,8 @@ export default class CheckoutView extends React.Component {
             <View style={styles.mainItemView}>
                 {this.getCart()}
                 <Text style={styles.money}>Total: {this.getTotal()}</Text>
-                <Button style={styles.bottomButton} onPress={this.sendOrder()}>
+                <Text style={styles.money}>Table Number: {this.props.tableNumber}</Text>
+                <Button style={styles.bottomButton} onPress={() => this.sendOrder()}>
                     <Text>Send Order</Text>
                 </Button>
             </View>
@@ -50,6 +51,7 @@ export default class CheckoutView extends React.Component {
         const cartItemIds = this.props.cartItemIds;
         for(let i = 0; i < cartItemIds.length; i++) {
             purchases.push(
+                <View>
                 <ListItem>
                     <Left>
                 <Text style={styles.itemName}>
@@ -58,11 +60,11 @@ export default class CheckoutView extends React.Component {
                 </Left>
                 <Right>
                 <Text style={styles.priceText}>
-                    <Button onPress={this.removeItem.bind(this, i)}><Text>Remove</Text></Button>
                     {"$"+Number(Math.floor(items[cartItemIds[i]]["price"]/100)+items[cartItemIds[i]]["price"]%100).toFixed(2)}
                 </Text>
                 </Right>
                 </ListItem>
+                </View>
             );
         }
 
@@ -107,7 +109,6 @@ export default class CheckoutView extends React.Component {
     }
 
     sendOrder() {
-
         var orderURL = this.props.apiHost + "/order/" + this.props.resID;
 
         //format the data for POST request then send
@@ -118,11 +119,21 @@ export default class CheckoutView extends React.Component {
                       "created": time.strftime("%c"),
                       "id": 420
         */
-        var order = [];
+        var order = {
+          "table": this.props.tableNumber,
+          "items": []
+        };
 
-        console.log("Cart items: " + this.props.cartItemIds)
+        for (i = 0; i < this.props.cartItemIds.length; i++) {
+          order["items"].push({
+            "name": this.props.menu.vendor.menu.products[this.props.cartItemIds[i]]["name"],
+            "id": this.props.cartItemIds[i]
+          });
+        }
 
-        fetch(orderURL + "test", {
+        console.log("SENDING ORDER", order)
+
+        fetch(orderURL, {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

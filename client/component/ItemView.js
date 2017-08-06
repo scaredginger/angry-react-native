@@ -73,11 +73,15 @@ export default class ItemView extends React.Component {
         newCartItemIds.push(itemIndex);
         
         return (
+            <View>
+                <View>
+                    <Image source={require(items[itemIndex]["image"])}/>
+                </View>
             <View style={styles.info}>
                 <Text style={styles.itemName}>{this.props.itemSelected}</Text>
                 <Text> {items[itemIndex]["desc"]}</Text>
                 <Text style={styles.priceText}>{"$"+Number(Math.floor(items[itemIndex]["price"]/100)+items[itemIndex]["price"]%100).toFixed(2)}</Text>
-                <Image source={items[itemIndex]["image"]}/>
+            </View>
             </View>
         );
     }

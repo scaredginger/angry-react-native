@@ -8,8 +8,14 @@ export default class MenuHeader extends React.Component {
   render() {
     let buttonCheck = this.props.buttonPressed;
     console.log(buttonCheck);
-    if(buttonCheck != 1 && buttonCheck != 3 && buttonCheck != 4) {
+    if(buttonCheck != 1 && buttonCheck != 3 && buttonCheck != 4 && buttonCheck != 0) {
       var button = (<Left></Left>)
+    } else if(buttonCheck == 0){
+      var button = (<Left>
+                      <Button style={styles.simpleButton} tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: -1})}}>
+                        <Text>Back</Text> 
+                      </Button>
+                    </Left>)
     } else{
       var button = (<Left>
                       <Button style={styles.simpleButton} tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: 0})}}>
@@ -25,9 +31,6 @@ export default class MenuHeader extends React.Component {
                       <Title>Menu{this.props.category ? ' - ' + this.props.category : ''}</Title>
                     </Body>
                     <Right style={styles.hackyHack}>
-                    <Button style={styles.simpleButton} transparent onPress={() => {this.props.onFilter({buttonPressed: 2})}}>
-                        <Text>Filter</Text>
-                    </Button>
                     </Right>
                 </Header>
     );

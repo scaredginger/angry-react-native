@@ -8,8 +8,8 @@
  * Controller of the restaurantClientApp
  */
 
- var api_server_str = "http://118.138.30.213:8000";
- var restaurant_id = "restaurant-id";
+ var api_server_str = "http://localhost:8000";
+ var restaurant_id = "5B45DD15-DBF1-4F78-ABFF-2AFE41DD040C";
 
 angular.module('restaurantClientApp')
   .controller('MainCtrl', function ($scope, $http, $interval) {

@@ -76,15 +76,12 @@ const styles = StyleSheet.create({
         marginTop: 40,
         flex: 2
     },
-    topView: {
-        backgroundColor: 'gray'
-    },
     changeButton: {
         backgroundColor: "#49A7FD"
     },
     welcomeText: {
         fontSize: 32,
-        textAlign: 'left'
+        textAlign: 'center'
     },
     tableText: {
         fontSize: 24
