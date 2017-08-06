@@ -33,6 +33,7 @@ export default class CheckoutView extends React.Component {
             <View style={styles.mainItemView}>
                 {this.getCart()}
                 <Text style={styles.money}>Total: {this.getTotal()}</Text>
+                <Text style={styles.money}>Table Number: {this.props.tableNumber}</Text>
                 <Button style={styles.bottomButton} onPress={() => this.sendOrder()}>
                     <Text>Send Order</Text>
                 </Button>
