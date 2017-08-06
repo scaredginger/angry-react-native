@@ -51,6 +51,7 @@ export default class CheckoutView extends React.Component {
         const cartItemIds = this.props.cartItemIds;
         for(let i = 0; i < cartItemIds.length; i++) {
             purchases.push(
+                <View>
                 <ListItem>
                     <Left>
                 <Text style={styles.itemName}>
@@ -59,11 +60,11 @@ export default class CheckoutView extends React.Component {
                 </Left>
                 <Right>
                 <Text style={styles.priceText}>
-                    <Button onPress={this.removeItem.bind(this, i)}><Text>Remove</Text></Button>
                     {"$"+Number(Math.floor(items[cartItemIds[i]]["price"]/100)+items[cartItemIds[i]]["price"]%100).toFixed(2)}
                 </Text>
                 </Right>
                 </ListItem>
+                </View>
             );
         }
 

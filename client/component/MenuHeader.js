@@ -10,7 +10,7 @@ export default class MenuHeader extends React.Component {
     console.log(buttonCheck);
     if(buttonCheck != 1 && buttonCheck != 3 && buttonCheck != 4) {
       var button = (<Left></Left>)
-    } else if(buttonCheck == 1){
+    } else if(buttonCheck == 0){
       var button = (<Left>
                       <Button style={styles.simpleButton} tranparent onPress={() => {this.props.onBackPressed({category: null, buttonPressed: -1})}}>
                         <Text>Back</Text> 
