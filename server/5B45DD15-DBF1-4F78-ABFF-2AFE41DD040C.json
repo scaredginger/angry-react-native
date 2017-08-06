@@ -1,105 +1,138 @@
 {
-  "vendor": {
-    "id": "5B45DD15-DBF1-4F78-ABFF-2AFE41DD040C",
-    "name": "UniHack Restaurant",
-    "location": "101 Angry Lane, Clayton VIC",
-
-    "menu": {
-      "products": [
-        {
-          "id": 0,
-          "name": "Garlic Bread",
-          "price": 400,
-          "variants": [],
-          "images": "http://imgur.com/gallery/7d7ua",
-          "tags": [
-            "entrees",
-            "vegetarian",
-            "nut free"
-          ]
-        },
-
-        {
-          "id": 1,
-          "name": "Sandwhich",
-          "price": 800,
-          "variants": ["Chicken", "Steak"],
-          "images": "http://imgur.com/gallery/7d7ua",
-          "tags": [
-            "mains",
-            "nut free"
-          ]
-        },
-
-        {
-          "id": 2,
-          "name": "Cheesecake",
-          "price": 600,
-          "variants": [],
-          "images": "http://imgur.com/gallery/7d7ua",
-          "tags": [
-            "desserts",
-            "specials"
-          ]
-        },
-
-        {
-          "id": 3,
-          "name": "Spring rolls",
-          "images": "http://imgur.com/gallery/7d7ua",
-          "price": 300,
-          "variants": [],
-          "tags": [
-            "entrees",
-            "vegetarian"
-          ]
-        },
-
-        {
-          "id": 4,
-          "name": "Steak and side",
-          "price": 1500,
-          "variants": ["Rare", "Medium", "Well Done"],
-          "images": "http://imgur.com/gallery/7d7ua",
-          "tags": [
-            "mains",
-            "specials"
-          ]
-        },
-
-        {
-          "id": 5,
-          "name": "Ice cream",
-          "price": 400,
-          "variants": ["Chocolate", "Vanilla", "Strawberry"],
-          "images": "http://imgur.com/gallery/7d7ua",
-          "tags": [
-            "dessert",
-            "specials"
-          ]
+    "vendor": {
+        "id": "5B45DD15-DBF1-4F78-ABFF-2AFE41DD040C",
+        "name": "UniHack Restaurant",
+        "location": "101 Angry Lane, Clayton VIC",
+        "menu": {
+            "products": [
+                {
+                    "id": 0,
+                    "name": "Garlic Bread",
+                    "price": 400,
+                    "variants": [],
+                    "images": "http://i.imgur.com/OZwK3Yk.jpg",
+                    "tags": [
+                        "entrees",
+                        "vegetarian",
+                        "nut free"
+                    ],
+                    "desc": "A basket of freshly made cheesy garlic bread"
+                },
+                {
+                    "id": 1,
+                    "name": "Sandwich",
+                    "price": 800,
+                    "variants": [
+                        "Chicken",
+                        "Steak"
+                    ],
+                    "images": "http://i.imgur.com/JhYpzdR.jpg",
+                    "tags": [
+                        "mains",
+                        "nut free"
+                    ],
+                    "desc": "Cheese, bacon and guacamole in a toasted sandwich loaf"
+                },
+                {
+                    "id": 2,
+                    "name": "Cheesecake",
+                    "price": 600,
+                    "variants": [],
+                    "images": "http://i.imgur.com/dxvU8ci.jpg",
+                    "tags": [
+                        "desserts",
+                        "specials"
+                    ],
+                    "desc": "Made fresh and served with a berry compote"
+                },
+                {
+                    "id": 3,
+                    "name": "Spring rolls",
+                    "images": "http://i.imgur.com/UgmTEzH.jpg",
+                    "price": 300,
+                    "variants": [],
+                    "tags": [
+                        "entrees",
+                        "vegetarian"
+                    ],
+                    "desc": "Plate of 4 pieces, served with sweet and sour dipping sauce"
+                },
+                {
+                    "id": 4,
+                    "name": "Steak and side",
+                    "price": 1500,
+                    "variants": [
+                        "Rare",
+                        "Medium",
+                        "Well Done"
+                    ],
+                    "images": "http://i.imgur.com/GgQPT4Q.jpg",
+                    "tags": [
+                        "mains",
+                        "specials"
+                    ],
+                    "desc": "Served with a side of potato mash or salad"
+                },
+                {
+                    "id": 5,
+                    "name": "Ice cream",
+                    "price": 400,
+                    "variants": [
+                        "Chocolate",
+                        "Vanilla",
+                        "Strawberry"
+                    ],
+                    "images": "http://i.imgur.com/XSrPDEV.jpg",
+                    "tags": [
+                        "desserts",
+                        "specials"
+                    ],
+                    "desc": "Served with M&Ms and topping of choice, for those with a sweet tooth"
+                },
+                {
+                    "id": 6,
+                    "name": "Milkshake",
+                    "price": 4000,
+                    "variants": [],
+                    "images": "http://i.imgur.com/tOmC7AR.jpg",
+                    "tags": [
+                        "drinks",
+                        "vegitarian"
+                    ],
+                    "desc": "A very expensive milkshake"
+                },
+                {
+                    "id": 7,
+                    "name": "Chicken Parma",
+                    "price": 2000,
+                    "variants": [],
+                    "images": "http://i.imgur.com/xosjzW9.jpg",
+                    "tags": [
+                        "mains"
+                    ],
+                    "desc": "Served with shaved leg ham, homemade tamato paste and shaved parmesan, including a side of salad"
+                },
+                {
+                    "id":87,
+                    "name": "Bowl of Chips",
+                    "price": 2000,
+                    "variants": [],
+                    "images": "http://i.imgur.com/RvF0hLr.jpg",
+                    "tags": [
+                        "entrees"
+                    ],
+                    "desc": "Seasoned with rock salt and 11 secret herbs and spices"
+                }
+            ],
+            "structure": {
+                "entrees": {
+                    "vegetarian": {}
+                },
+                "mains": {},
+                "desserts": {},
+                "specials": {}
+            },
+            "style": {}
         }
-      ],
-
-      "structure": {
-        "entrees": {
-          "vegetarian": {
-
-          }
-        },
-        "mains": {
-
-        },
-        "desserts": {
-
-        },
-        "specials": {
-
-        }
-      },
-
-      "style": {
-
-      }
     }
-  }
 }
