@@ -159,7 +159,8 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     mainItemView: {
-        marginTop: 20
+        marginTop: 20,
+        marginLeft: 20
     },
     money: {
         marginTop: 20,

@@ -75,7 +75,7 @@ export default class ItemView extends React.Component {
         return (
             <View>
                 <View>
-                    <Image source={{ uri: imagePath }} style={{width: 300, height: 300}}/>
+                    <Image source={require('../food.jpeg')} style={styles.image}/>
                 </View>
             <View style={styles.info}>
                 <Text style={styles.itemName}>{this.props.itemSelected}</Text>
@@ -112,5 +112,12 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginTop: 20,
         backgroundColor: "#49A7FD"
+    },
+    image: {
+        justifyContent: 'center',
+        marginLeft: 20,
+        marginBottom: 20,
+        width: 300,
+        height: 300
     }
 });
