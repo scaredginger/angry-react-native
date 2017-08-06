@@ -8,7 +8,7 @@ export default class MenuHeader extends React.Component {
   render() {
     let buttonCheck = this.props.buttonPressed;
     console.log(buttonCheck);
-    if(buttonCheck != 1 && buttonCheck != 3 && buttonCheck != 4) {
+    if(buttonCheck != 1 && buttonCheck != 3 && buttonCheck != 4 && buttonCheck != 0) {
       var button = (<Left></Left>)
     } else if(buttonCheck == 0){
       var button = (<Left>
