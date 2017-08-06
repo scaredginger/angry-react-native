@@ -102,7 +102,9 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     info: {
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        marginLeft: 20,
+        marginRight: 20
     },
     bottomButton: {
         alignSelf: 'stretch',
