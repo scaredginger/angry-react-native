@@ -66,16 +66,16 @@ export default class ItemView extends React.Component {
             }
         }
 
-        console.log("Item index is: " + itemIndex);
-
         var temp = this.props.cartItemIds;
         newCartItemIds = temp.slice();
         newCartItemIds.push(itemIndex);
-        
+
+        let imagePath = items[itemIndex]["images"];
+
         return (
             <View>
                 <View>
-                    <Image source={require(items[itemIndex]["image"])}/>
+                    <Image source={{ uri: 'imagePath' }} style={{width: 300, height: 300}}/>
                 </View>
             <View style={styles.info}>
                 <Text style={styles.itemName}>{this.props.itemSelected}</Text>
