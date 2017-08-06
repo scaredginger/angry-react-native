@@ -54,9 +54,6 @@ export default class Greeting extends React.Component {
         <View>
             <Text style={styles.tableText}> You are at Table Number: {this.props.tableNumber} </Text>
         </View>
-        <View style={styles.assistance}>
-            <Button style={styles.changeButton}><Text style={styles.buttonText}> Press for Assistance </Text></Button>
-        </View>
         </View>
     );
   }
@@ -64,7 +61,7 @@ export default class Greeting extends React.Component {
   menuButton() {
       return (
           <View style={styles.bottomView}>
-              <Button style={styles.toMenuButton} onPress={() => {this.props.beginDine({buttonPressed: 0})}}><Text>I'm ready to Eat!</Text></Button>
+              <Button style={styles.toMenuButton} onPress={() => {this.props.beginDine({buttonPressed: 0})}}><Text style={styles.goButton} >I'm Ready to Eat </Text></Button>
           </View>
       );
   }
@@ -103,8 +100,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginLeft: 20,
         marginRight: 20,
-        padding: 40,
-        fontSize: 28,
+        padding: 60,
         alignSelf: 'stretch'
     },
     middleView: {
@@ -115,5 +111,9 @@ const styles = StyleSheet.create({
     bottomView: {
         flex: 2,
         justifyContent: 'flex-end'
+    },
+    goButton: {
+        fontSize: 30,
+        borderRadius: 25
     }
 });
