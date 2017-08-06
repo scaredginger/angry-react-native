@@ -110,19 +110,63 @@
                     "tags": [
                         "mains"
                     ],
-                    "desc": "Served with shaved leg ham, homemade tamato paste and shaved parmesan, including a side of salad"
+                    "desc": "Served with shaved ham, tomato and parmesan, including a side of salad"
                 },
                 {
-                    "id":87,
+                    "id":8,
                     "name": "Bowl of Chips",
-                    "price": 2000,
+                    "price": 700,
                     "variants": [],
                     "images": "http://i.imgur.com/RvF0hLr.jpg",
                     "tags": [
                         "entrees"
                     ],
                     "desc": "Seasoned with rock salt and 11 secret herbs and spices"
-                }
+                },
+                {
+                    "id":9,
+                    "name": "Chocolate Mud Cake",
+                    "price": 500,
+                    "variants": [],
+                    "images": "http://i.imgur.com/rVOZIxM.jpg",
+                    "tags": [
+                        "desserts"
+                    ],
+                    "desc": "Sugar high guaranteed, or your money back"
+                },
+                {
+                    "id":10,
+                    "name": "Fettuccine Carbonara",
+                    "price": 2100,
+                    "variants": [],
+                    "images": "http://i.imgur.com/aLeFufU.jpg",
+                    "tags": [
+                        "mains"
+                    ],
+                    "desc": "Locally made pasta witha cream sauce"
+                },
+                {
+                    "id":11,
+                    "name": "Smashed Avocado on Toast",
+                    "price": 6000,
+                    "variants": [],
+                    "images": "http://i.imgur.com/u2Fv2gX.jpg",
+                    "tags": [
+                        "mains"
+                    ],
+                    "desc": "Say goodbye to property ownership"
+                },
+                {
+                    "id":12,
+                    "name": "Chicken and Lentil Soup",
+                    "price": 850,
+                    "variants": [],
+                    "images": "http://i.imgur.com/mRNtpjO.jpg",
+                    "tags": [
+                        "entrees"
+                    ],
+                    "desc": "Made daily and served with a side of bread and butter"
+                }                
             ],
             "structure": {
                 "entrees": {
