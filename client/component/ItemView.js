@@ -75,7 +75,7 @@ export default class ItemView extends React.Component {
         return (
             <View>
                 <View>
-                    <Image source={{ uri: 'imagePath' }} style={{width: 300, height: 300}}/>
+                    <Image source={{ uri: imagePath }} style={{width: 300, height: 300}}/>
                 </View>
             <View style={styles.info}>
                 <Text style={styles.itemName}>{this.props.itemSelected}</Text>
