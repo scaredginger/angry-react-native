@@ -240,7 +240,7 @@ export default class EatingScreen extends React.Component {
     view = (
       <Container>
         <MenuHeader buttonPressed={this.state.buttonPressed} category={this.state.category} onFilter={this.setState.bind(this)} onBackPressed={this.setState.bind(this)} />
-        <ItemView menu={menu} total={this.state.total} cartItemIds={this.state.cartItemIds} buttonPressed={this.state.buttonPressed} itemsInCart={this.state.itemsInCart} currentItemId={this.state.currentItemId} itemSelected={this.state.itemSelected} onBeginCheckout={this.setState.bind(this)} onAddToCart={this.setState.bind(this)}/>
+        <ItemView menu={menu} cartItemIds={this.state.cartItemIds} buttonPressed={this.state.buttonPressed} itemsInCart={this.state.itemsInCart} currentItemId={this.state.currentItemId} itemSelected={this.state.itemSelected} onBeginCheckout={this.setState.bind(this)} onAddToCart={this.setState.bind(this)}/>
       </Container>
     );
     break;
